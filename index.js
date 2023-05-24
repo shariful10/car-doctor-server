@@ -59,7 +59,11 @@ async function run() {
 		// Services Routes
 		app.get("/services", async (req, res) => {
 			const sort = req.query.sort;
-			const query = {};
+			const search = req.query.search;
+			console.log(search);
+			// const query = {};
+			// const query = { price: { $gte: 20, $lte: 90 } };
+			const query = { title: { $regex: search, $options: "i" } };
 			const options = {
 				// sort matched documents in descending order by rating
 				sort: {
